@@ -14,7 +14,7 @@ from scipy import stats
 
 
 def app():
-  st.header("Win Probability based on 4th down decision")
+  st.header("Win Probability and 4th Down Play Decision")
   df = data_prep() #fourthdown data
   #logos = team_logos()
   teamcolors = team_colors() #team colors
@@ -58,7 +58,7 @@ def app():
         
           data['game_list'] ='Game Date ' + data['game_date'].astype(str) +" Against "+ data['away_team']
           game_list = list(data['game_list'].unique())
-          game = st.selectbox("choose a game",(game_list))
+          game = st.selectbox("Choose a Game",(game_list))
           #st.write("Team "+team+" decisions", display_df.sort_index())
          
           data = data[data["game_list"]==game]
@@ -81,7 +81,7 @@ def app():
 
           #  st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
-          decision = st.selectbox( "Choose 4th down play",(decisions))
+          decision = st.selectbox( "Choose 4th Down Scenario",(decisions))
          
     plot_df = data[data['Decision']==decision]
     decision_time = list((plot_df['game_seconds_remaining']/60).astype(int))
@@ -110,12 +110,12 @@ def app():
         quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px; alignment:center;">'+ ''.join(quarter)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
       with score2:
-        st.markdown('Ball on')
+        st.markdown('Distance to Goal')
         yard_line = plot_df['yardline_100'].astype(int).astype(str)
         yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(yard_line)+' </p>'
         st.markdown(yard_info, unsafe_allow_html=True)
       with score3:
-        st.markdown('Yds to Go')
+        st.markdown('Distance to 1st Down')
         ydstogo = plot_df['ydstogo'].astype(str)
         quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(ydstogo)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
