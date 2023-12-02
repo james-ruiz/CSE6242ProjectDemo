@@ -56,7 +56,7 @@ def app():
 
         #get key by combining columns
         
-          data['game_list'] ='Game Date ' + data['game_date'].astype(str) +" Against "+ data['away_team']
+          data['game_list'] ='Game Date ' + data['game_date'].astype(str) +" vs "+ data['away_team']
           game_list = list(data['game_list'].unique())
           game = st.selectbox("Choose a Game",(game_list))
           #st.write("Team "+team+" decisions", display_df.sort_index())
@@ -74,7 +74,7 @@ def app():
           #with col1:
             #st.image('images/'+team+'.png')
          
-          data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Seconds remaining:  ' + data['game_seconds_remaining'].astype(str) + ' Yards to go: '+ data['ydstogo'].astype(str)
+          data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Time Remining [seconds]:  ' + data['game_seconds_remaining'].astype(int).astype(str) + ', Yards to Go: '+ data['ydstogo'].astype(str)
           decisions = list(data['Decision'].unique()) 
 
          # with col2:
@@ -181,7 +181,7 @@ def app():
     
 
     with tab1:
-      st.write("Field Position of team "+team1[0])
+      st.write("Field Position for: "+team1[0])
       plt.figure()
 
       yl=100-yard_line.astype(int)
@@ -249,7 +249,7 @@ def app():
       
       plt.figure()
       ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability ,palette=c)
-      plt.xlabel("Play type")
+      plt.xlabel("Play Type")
       plt.ylabel("Probability")
       plt.title(f"Change in Win Probability by Play Type for {game_teams[0]}")
       #plt.title(f"Change in Win Probability by Play Type for team \n{game_teams[0]}")
