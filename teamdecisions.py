@@ -247,7 +247,7 @@ def app():
       
       #bababa
       
-      plt.figure(figsize=(6.4,4.8)) #width, height
+      plt.figure(figsize=(6.4,4)) #width, height 6.4, 4.8
       ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability ,palette=c)
       plt.xlabel("Play Type")
       plt.ylabel("Probability")
