@@ -57,7 +57,7 @@ def app():
 
         #get key by combining columns
         
-          data['game_list'] ='Game On ' + data['game_date'].astype(str) +" vs "+ data['away_team']
+          data['game_list'] ='Game Date: ' + data['game_date'].astype(str) +" vs "+ data['away_team']
           game_list = list(data['game_list'].unique())
           game = st.selectbox("Choose a Game",(game_list))
           #st.write("Team "+team+" decisions", display_df.sort_index())
