@@ -112,8 +112,8 @@ def app():
         st.markdown(quarter_info, unsafe_allow_html=True)
       with score2:
         st.markdown('Yardine')
-        yard_line = np.where(plot_df['yardline_100']>50, 100-plot_df['yardline_100'], plot_df['yardline_100']).astype(int).astype(str)
-        # yard_line = plot_df['yardline_100'].astype(int).astype(str)
+        # yard_line = np.where(plot_df['yardline_100']>50, 100-plot_df['yardline_100'], plot_df['yardline_100']).astype(int).astype(str)
+        yard_line = plot_df['yardline_100'].astype(int).astype(str)
         yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(yard_line)+' </p>'
         st.markdown(yard_info, unsafe_allow_html=True)
       with score3:
