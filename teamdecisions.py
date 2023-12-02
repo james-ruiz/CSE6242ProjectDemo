@@ -215,7 +215,7 @@ def app():
 
     with tab2:
 
-      plt.figure(figsize=(6.4,3.5)) #width, height 6.4, 4.8
+      plt.figure(figsize=(6.4,4)) #width, height 6.4, 4.8
       sns.lineplot(data=graph_data, palette=colors, linewidth=1.5, errorbar=None)
       #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
       #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
@@ -247,7 +247,7 @@ def app():
       
       #bababa
       
-      plt.figure(figsize=(6.4,3.5)) #width, height 6.4, 4.8
+      plt.figure(figsize=(6.4,4)) #width, height 6.4, 4.8
       ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability ,palette=c)
       plt.xlabel("Play Type")
       plt.ylabel("Probability")
