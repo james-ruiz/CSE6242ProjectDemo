@@ -219,25 +219,26 @@ def app():
       sns.lineplot(data=graph_data, palette=colors, linewidth=1.5, errorbar=None)
       #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
       #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
-      plt.xticks(rotation=45)
+      plt.xticks(rotation=0)
       plt.xlim(60,0)
       plt.ylim(0,1)
-      plt.xlabel("Time Remaining (minutes)")
+      plt.xlabel("Time Remaining [minutes]")
       plt.ylabel("Win Probability")
       plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
       st.pyplot(plt)
       plt.figure()
 
     with tab3:
-      play_columns = ['play_id','posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
-      column_graph = plot_df[plot_df['play_id']==decision_play[0]]
-      column_graph = column_graph[play_columns]
-      column_graph['Punt']=column_graph['posteam_punt_wp_delta']
-      column_graph['Field Goal']=column_graph['posteam_fg_made_wp_delta']+column_graph['posteam_fg_missed_wp_delta']
-      column_graph['Run']=column_graph['posteam_run_failed_wp_delta'] + column_graph['posteam_run_convert_wp_delta']
-      column_graph['Pass']=column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta']
-      column_graph = column_graph.drop(columns=['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta'])
-      graph_df = column_graph.melt(id_vars='play_id', var_name='Play',value_vars=['Punt','Field Goal','Run','Pass'], value_name='Probability')
+        
+      play_columns               = ['play_id','posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
+      column_graph               = plot_df[plot_df['play_id']==decision_play[0]]
+      column_graph               = column_graph[play_columns]
+      column_graph['Punt']       = column_graph['posteam_punt_wp_delta']
+      column_graph['Field Goal'] = column_graph['posteam_fg_made_wp_delta']+column_graph['posteam_fg_missed_wp_delta']
+      column_graph['Run']        = column_graph['posteam_run_failed_wp_delta'] + column_graph['posteam_run_convert_wp_delta']
+      column_graph['Pass']       = column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta']
+      column_graph               = column_graph.drop(columns=['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta'])
+      graph_df                   = column_graph.melt(id_vars='play_id', var_name='Play',value_vars=['Punt','Field Goal','Run','Pass'], value_name='Probability')
 
       c = [colors[0] if (x < max(graph_df.Probability)) else '#66ff66' for x in graph_df.Probability]
       plt.figure()
