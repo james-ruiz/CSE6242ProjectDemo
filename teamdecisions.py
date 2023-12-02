@@ -10,6 +10,7 @@ from footballfield import create_football_field
 from load_data import team_colors
 from load_data import all_data
 from scipy import stats
+import numpy as np
 #from helpers import pearsonr_ci
 
 
@@ -84,7 +85,7 @@ def app():
           decision = st.selectbox( "Choose 4th Down Scenario",(decisions))
          
     plot_df = data[data['Decision']==decision]
-    decision_time = list((plot_df['game_seconds_remaining']/60).astype(int))
+    decision_time = list((60.0-(plot_df['game_seconds_remaining']/60)).astype(int))
     decision_play = list(plot_df['play_id'])
     #plot_df = plot_df[scoreboard_columns]
 
@@ -111,7 +112,7 @@ def app():
         st.markdown(quarter_info, unsafe_allow_html=True)
       with score2:
         st.markdown('Yardine')
-        yard_line = plot_df['yardline_100'].astype(int).astype(str)
+        yard_line = np.where(plot_df['yardline_100']>50, 100-plot_df['yardline_100'], plot_df['yardline_100']).astype(int).astype(str)
         yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(yard_line)+' </p>'
         st.markdown(yard_info, unsafe_allow_html=True)
       with score3:
@@ -250,7 +251,7 @@ def app():
       
       # plt.figure(figsize=(6.4,4)) #width, height 6.4, 4.8
       plt.figure()
-      ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability ,palette=c)
+      ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability, palette=c)
       plt.xlabel("Play Type")
       plt.ylabel("Change in Win Probability")
       plt.title(f"Change in Win Probability by Play Type: {game_teams[0]}")
