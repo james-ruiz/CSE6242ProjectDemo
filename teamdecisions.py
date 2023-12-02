@@ -224,7 +224,8 @@ def app():
       plt.ylim(0,1)
       plt.xlabel("Time Remaining [minutes]")
       plt.ylabel("Win Probability")
-      plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
+      #plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
+      plt.title(f"Win Probability: {game_teams[0]} vs {game_teams[1]}")
       st.pyplot(plt)
       plt.figure()
 
@@ -240,12 +241,18 @@ def app():
       column_graph               = column_graph.drop(columns=['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta'])
       graph_df                   = column_graph.melt(id_vars='play_id', var_name='Play',value_vars=['Punt','Field Goal','Run','Pass'], value_name='Probability')
 
-      c = [colors[0] if (x < max(graph_df.Probability)) else '#66ff66' for x in graph_df.Probability]
+      # c = [colors[0] if (x < max(graph_df.Probability)) else '#66ff66' for x in graph_df.Probability]
+      
+      c = ['#bababa' if (x < max(graph_df.Probability)) else '#66ff66' for x in graph_df.Probability]
+      
+      #bababa
+      
       plt.figure()
       ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability ,palette=c)
       plt.xlabel("Play type")
       plt.ylabel("Probability")
-      plt.title(f"Change in Win Probability by play type for team \n{game_teams[0]}")
+      plt.title(f"Change in Win Probability by Play Type for {game_teams[0]}")
+      #plt.title(f"Change in Win Probability by Play Type for team \n{game_teams[0]}")
       st.pyplot(plt)
       plt.figure()
     
