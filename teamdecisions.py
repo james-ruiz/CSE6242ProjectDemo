@@ -181,7 +181,7 @@ def app():
     
 
     with tab1:
-      st.write("Field Position for: "+team1[0])
+      st.write("   Field Position: "+team1[0])
       plt.figure()
 
       yl=100-yard_line.astype(int)
@@ -251,7 +251,7 @@ def app():
       ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability ,palette=c)
       plt.xlabel("Play Type")
       plt.ylabel("Probability")
-      plt.title(f"Change in Win Probability by Play Type for {game_teams[0]}")
+      plt.title(f"Change in Win Probability by Play Type: {game_teams[0]}")
       #plt.title(f"Change in Win Probability by Play Type for team \n{game_teams[0]}")
       st.pyplot(plt)
       plt.figure()
