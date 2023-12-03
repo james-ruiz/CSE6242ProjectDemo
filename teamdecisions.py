@@ -85,7 +85,8 @@ def app():
           decision = st.selectbox( "Choose 4th Down Scenario",(decisions))
          
     plot_df = data[data['Decision']==decision]
-    decision_time = list((60.0-(plot_df['game_seconds_remaining']/60)).astype(int))
+    # decision_time = list((60.0-(plot_df['game_seconds_remaining']/60)).astype(int))
+    decision_time = list(plot_df['game_seconds_remaining']/60).astype(int)
     decision_play = list(plot_df['play_id'])
     #plot_df = plot_df[scoreboard_columns]
 
