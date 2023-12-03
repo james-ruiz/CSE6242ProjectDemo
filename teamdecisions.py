@@ -75,7 +75,8 @@ def app():
           #with col1:
             #st.image('images/'+team+'.png')
          
-          data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Time Remining [seconds]:  ' + data['game_seconds_remaining'].astype(int).astype(str) + ', Yards to Go: '+ data['ydstogo'].astype(str)
+          #data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Time Remining [seconds]:  ' + data['game_seconds_remaining'].astype(int).astype(str) + ', Yards to Go: '+ data['ydstogo'].astype(str)
+          data['Decision'] = 'Time Remining [sec]:  ' + data['game_seconds_remaining'].astype(int).astype(str) + ', Yards to Go: '+ data['ydstogo'].astype(str)
           decisions = list(data['Decision'].unique()) 
 
          # with col2:
