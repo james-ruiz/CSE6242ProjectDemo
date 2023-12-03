@@ -236,7 +236,7 @@ def app():
 
     with tab3:
         
-      play_columns               = ['play_id','posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta', 'posteam_pass_convert_wp_delta_mod', 'posteam_run_convert_wp_delta_mod']
+      play_columns               = ['play_id','posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
       
       column_graph               = plot_df[plot_df['play_id']==decision_play[0]]
       
@@ -244,8 +244,8 @@ def app():
       
       column_graph['Punt']       = column_graph['posteam_punt_wp_delta']
       column_graph['Field Goal'] = column_graph['posteam_fg_made_wp_delta']+column_graph['posteam_fg_missed_wp_delta']
-      column_graph['Run']        = column_graph['posteam_run_failed_wp_delta'] + column_graph['posteam_run_convert_wp_delta_mod']
-      column_graph['Pass']       = column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta_mod']
+      column_graph['Run']        = column_graph['posteam_run_failed_wp_delta'] + column_graph['posteam_run_convert_wp_delta']
+      column_graph['Pass']       = column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta']
       column_graph               = column_graph.drop(columns=['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta'])
       graph_df                   = column_graph.melt(id_vars='play_id', var_name='Play',value_vars=['Punt','Field Goal','Run','Pass'], value_name='Probability')
 
